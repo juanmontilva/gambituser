@@ -29,6 +29,7 @@ func GetSecret(nombreSecret string) (models.SecretRDSJson, error) {
 	// estructura para procesar el getsecretvalue en este sentido se hace el puntero
 	json.Unmarshal([]byte(*clave.SecretString), &datosSecret)
 	fmt.Println(">Lectura secret ok" + nombreSecret)
+
 	return datosSecret, nil
 
 	// todo resumido como funcion de secrets manager
