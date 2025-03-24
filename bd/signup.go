@@ -33,8 +33,14 @@ func Signup(sig models.Signup) error {
 	defer Db.Close()
 
 	// Prepara la sentencia SQL para insertar el nuevo usuario
-	sentencia := "INSERT INTO users (User_Email, User_UUID, User_DateAdd) VALUES ('" + sig.UserEmail + "','" + sig.UserUUID + "','" + tools.FechaMysql() + "')"
-	fmt.Println(sentencia)
+	//OJO ESTA VERSION NO ES TAN SEGURA, ES RECOMENDABLE LA OTRA VERSION, AGREGAR COMENTARIOS POR SI ACASO PARA EVITAR UN SQL INYECTION LO CUAL ES MUY PELIGROSO, TENGO QUE TRABAJAR CON MUCHA PRECAUCION
+	//sentencia := "INSERT INTO users (User_Email, User_UUID, User_DateAdd) VALUES ('" + sig.UserEmail + "','" + sig.UserUUID + "','" + tools.FechaMysql() + "')"
+	//fmt.Println(sentencia)
+
+	//VERSION SEGURA DE SENTENCIA
+	// Versión segura usando prepared statements
+	sentencia := "INSERT INTO users (User_Email, User_UUID, User_DateAdd) VALUES (?, ?, ?)"
+	_, err = Db.Exec(sentencia, sig.UserEmail, sig.UserUUID, tools.FechaMysql())
 
 	// Ejecuta la sentencia SQL
 	// No nos interesa el número de filas afectadas, solo si hay algún error
