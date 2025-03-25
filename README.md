@@ -32,7 +32,7 @@ gambituser/
 - Go 1.x o superior
 - Cuenta de AWS con acceso a:
   - AWS Lambda
-  - AWS DynamoDB
+  - AWS RDS mySql
   - AWS Secrets Manager
   - AWS Cognito
 
@@ -67,7 +67,7 @@ El proyecto está diseñado para ser desplegado como dos funciones Lambda en AWS
 ### Flujo de Registro
 1. El usuario envía sus datos de registro
 2. La Lambda de Registro valida los datos
-3. Se crea el usuario en DynamoDB
+3. Se crea el usuario en RDS mySql
 4. Se genera un token de confirmación
 5. Se envía un email de confirmación
 
@@ -91,15 +91,3 @@ Para mantener el proyecto actualizado y seguro:
 2. Actualizar las políticas de seguridad de AWS
 3. Monitorear los logs de CloudWatch
 4. Realizar pruebas de integración periódicas
-
-## Contribución
-
-Para contribuir al proyecto:
-1. Fork el repositorio
-2. Crear una rama para tu feature
-3. Realizar tus cambios
-4. Enviar un Pull Request
-
-## Licencia
-
-[Especificar la licencia del proyecto]
